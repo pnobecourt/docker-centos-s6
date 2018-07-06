@@ -27,7 +27,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
 PS1=$(whoami)@$(hostname):$(pwd)$
 
 # Install tools and s6-overlay
-RUN yum check-update && \
+RUN yum check-update ; \
     yum install \
         bash \
         ca-certificates \
