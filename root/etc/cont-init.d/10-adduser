@@ -1,0 +1,17 @@
+#!/usr/bin/with-contenv bash
+
+PUID=${PUID:-911}
+PGID=${PGID:-911}
+
+# Create docker user and group
+groupadd -g $PGID dockeruser
+useradd -o -u $PUID -g $PGID -m -d /srv dockeruser
+
+# Print user / group info
+echo "
+User uid:    $(id -u dockeruser)
+User gid:    $(id -g dockeruser)
+"
+
+# Fix perms
+chown -R dockeruser:dockeruser /srv
