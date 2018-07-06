@@ -27,16 +27,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
 PS1=$(whoami)@$(hostname):$(pwd)$
 
 # Install tools and s6-overlay
-RUN yum check-update ; \
-    yum install \
-        bash \
-        ca-certificates \
-        coreutils \
-        curl \
-        shadow \
-        tzdata && \
-    curl -L -S https://github.com/just-containers/s6-overlay/releases/download/$OVERLAY_VERSION/s6-overlay-$OVERLAY_ARCH.tar.gz | tar xvz -C / && \
-    yum remove curl && \
+RUN curl -L -S https://github.com/just-containers/s6-overlay/releases/download/$OVERLAY_VERSION/s6-overlay-$OVERLAY_ARCH.tar.gz | tar xvz -C / && \
     yum clean all && \
     yum clean metadata && \
     yum clean cache && \
